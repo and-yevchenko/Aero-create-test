@@ -1,0 +1,33 @@
+.ready-question {
+    &__title {
+        font-size: 1.5rem;
+        font-weight: 500;
+        letter-spacing: 0.1rem;
+        margin-bottom: 1.5rem;
+        text-wrap: wrap;
+        word-wrap: break-word;
+        word-break: break-all;
+
+    }
+    &__variants {
+        display: flex;
+        flex-direction: column;
+        list-style-type: disc;
+        > * {
+            text-wrap: wrap;
+        }
+        :not(:last-child) {
+            margin-bottom: 1rem;
+        }
+    }
+    &__variant-item {
+        display: flex;
+        gap: 2rem;
+        > p {
+            word-break: break-all;
+            word-wrap: break-word;
+            text-wrap: wrap;
+            font-weight: 600;
+        }
+    }
+}
