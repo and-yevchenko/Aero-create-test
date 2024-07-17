@@ -1,46 +1,74 @@
 import { X } from "lucide-react"
-import { useAddForms, useReUpdate } from "../../store/store"
-import { useEffect, useState } from "react"
+import { Button } from "../ui/Buttons/Button"
+import { useEffect, useRef } from "react"
+import { useAddForms } from "../../store/store"
 
 
 
 
-export const VariantItem = ({item, el}) => {
+export const VariantItem = ({ item, cardItem, setCardItem, openSettings, register, errors, setValue }) => {
 
-    const arrUpdate = useReUpdate(state => state.arrUpdate)
-    const reUpdate = useReUpdate(state => state.updates)
-    const deleteVariants = useAddForms(state => state.deleteVariant)
-    const onDeleteVariants = (e) => {
-        // el.variants = el.variants.filter((variant) => variant.id !== item.id)
-        deleteVariants(el.id, item.id)
-        reUpdate()
-        console.log(el);
-    }
-
-    const [answerQuestion, setAnswerQuestion] = useState("")
     const forms = useAddForms(state => state.forms)
-    const updateVariants = useAddForms(state => state.updateFormVariants)
-    useEffect(() => {
-        updateVariants(el.id, item.id, answerQuestion)
-        console.log(el.variants);
-    }, [answerQuestion])
+    
 
-    const addTrueVariants = useAddForms(state => state.addTrueVariant)
-    const deleteTrueVariants = useAddForms(state => state.deleteTrueVariant)
-    const handleChange = (e) => {
-        e.target.checked === true && addTrueVariants(el.id, item.id)
-        e.target.checked === false && deleteTrueVariants(el.id, item.id)
-        console.log(forms);
+    const onDeleteVariant = (e) => {
+        e.preventDefault()
+        setCardItem(prev => {
+            return {
+                ...prev,
+                variants: prev.variants.filter((i) => i.id !== item.id)
+            }
+        })
     }
+
+    const inputVariant = useRef(null)
+    const inputCheckbox = useRef(null)
+    openSettings && useEffect(() => {
+        const allVariants = forms.find(form => form.id === openSettings).variants
+        console.log(allVariants.find(i => i.id === item.id))
+        // inputVariant.current.value = allVariants.find(i => i.id === item.id)?.answer
+        setValue(`${item.id}`, `${[...allVariants].find(i => i.id === item.id)?.answer}`)
+        inputCheckbox.current.checked = allVariants.find(i => i.id === item.id)?.check
+        // setValue(`answ${item.id}`, `${[...allVariants].find(i => i.id === item.id)?.check}`)
+        // unregister()
+        
+    }, [openSettings])
+
+    const handleTrueVariant = (e) => {
+        setCardItem(prev => {
+            prev.variants.find(i => i.id === item.id).check = e.target.checked
+            return {
+                ...prev,
+                variants: prev.variants
+            }
+        })
+    }
+
+    //{...register(`${item.id}`, {required: true})}
+    //{...register(`answ${item.id}`, {validate: () => cardItem.variants.filter((i) => i.check).length === 1})}
 
     return (
         <li>
-            <input type="text" name='variants' className='list-inputs__variant' onInput={(e) => {
-                    setAnswerQuestion(e.target.value)
-                }}/>
-            {el.variants.length > 1 &&
-                <button type="button" className='list-inputs__btn' onClick={onDeleteVariants}><X /></button> }
-            <input type="checkbox" name="checkbox" className='list-inputs__checkbox' onChange={handleChange}/>
+            <input {...register(`${item.id}`, {required: true})} type="text" className='list-inputs__variant' onInput={(e) => {
+                setCardItem(prev => {
+                    prev.variants.find(i => i.id === item.id).answer = e.target.value
+                    return {
+                        ...prev,
+                        variants: prev.variants
+                    }
+                })
+            }}
+            style={errors[item.id] && {borderBottom: '1px solid red'}}
+            />
+            {cardItem.variants.length > 1 &&
+                <Button onClick={onDeleteVariant}><X /></Button>
+            }
+            <label className="list-inputs__checks">
+                <input ref={inputCheckbox} name="checkbox" 
+                type="checkbox" className='list-inputs__checkbox' onClick={handleTrueVariant}
+                />
+                <span className="list-inputs__custom-checkbox"></span>
+            </label>
         </li>
     )
 }

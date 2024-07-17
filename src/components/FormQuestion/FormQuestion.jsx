@@ -1,47 +1,65 @@
 import { Plus } from 'lucide-react'
 import './FormQuestion.scss'
 import { Button } from '../ui/Buttons/Button'
-import { useAddForms, useReUpdate } from '../../store/store'
-import { useEffect, useState } from 'react'
+import { useAddForms } from '../../store/store'
 import { VariantItem } from './VariantItem'
+import { nanoid } from 'nanoid'
+import { useEffect, useRef, useState } from 'react'
+import { useForm } from 'react-hook-form'
 
 
-const formBtnParams = {
-    value: "delete",
-}
 
-export const FormQuestion = ({ num, el }) => {
+
+export const FormQuestion = ({ children, cardItem, setCardItem, openSettings }) => {
+
+    const { register, unregister, handleSubmit, watch, reset, setValue, formState: { errors, isSubmitted, isValid } } = useForm({
+        mode: 'onChange'
+    })
+
+    // const [isReset, setIsReset] = useState(false)
+    const onSubmit = data => {
+        console.log(data)
+        reset()
+        
+    }
+    const handleClick = () => {
+        console.log('f')
+        // unregister()
+    }
 
     const forms = useAddForms(state => state.forms)
-    const deleteForms = useAddForms(state => state.deleteForm)
-    const onDeleteForm = (e) => {
-        e.preventDefault()
-        deleteForms(el.id)
-    }
-    
-    const [titleQuestion, setTitleQuestion] = useState("")
-    const updateTitle = useAddForms(state => state.updateFormTitle)
-    useEffect(() => {
-        updateTitle(el.id, titleQuestion)
-    }, [titleQuestion])
-    // const onUpdateTitle = () => { el.title = titleQuestion }
 
-    const addVariants = useAddForms(state => state.addVariant)
-    const arrUpdate = useReUpdate(state => state.arrUpdate)
-    const reUpdate = useReUpdate(state => state.updates)
-    const onAddVariant = (e) => { 
-        addVariants(el.id)
-        reUpdate()
-        // el.variants = [...el.variants, {id: nanoid()}] 
+    const onAddVariant = (e) => {
+        e.preventDefault()
+        setCardItem(prev => {
+            return {
+                ...prev,
+                variants: [...prev.variants, { id: nanoid(), answer: "", check: false }]
+            }
+        })
     }
+
+    const inputTitle = useRef(null)
+    openSettings && useEffect(() => {
+            setCardItem(forms.find(form => form.id === openSettings))
+            // inputTitle.current.value = forms.find(form => form.id === openSettings).title
+            setValue("question", forms.find(form => form.id === openSettings).title)
+        }, [openSettings])
+
 
     return (
-        <form className="form-question" id="form-question" >
+        <form onSubmit={handleSubmit(onSubmit)} className="form-question card-settings" id="form-question">
             <div className='form-question__question'>
-                <label htmlFor="question">Question {num}</label>
-                <input type="text" placeholder="Question" name='question' onInput={(e) => {
-                    setTitleQuestion(e.target.value)
-                }}/>
+                <label htmlFor="question">Question:</label>
+                <input {...register("question", {required: 'This field is required'})} type="text" placeholder="Question" onInput={(e) => {
+                    setCardItem(prev => {
+                        return {
+                            ...prev,
+                            title: e.target.value
+                        }
+                    })
+                }} />
+                {errors.question && <span style={{color: 'red'}}>This field is required</span>}
             </div>
             <div className='form-question__responses'>
                 <div className="form-question__variants">
@@ -49,18 +67,25 @@ export const FormQuestion = ({ num, el }) => {
                         <label htmlFor='variants'>Variants</label><label htmlFor='checkbox'>True</label>
                     </div>
                     <ul className='form-question__list-inputs list-inputs'>
-                        {el.variants.length > 0 && el.variants.map((item) => (
-                            <VariantItem item={item} key={item.id} el={el}/>
+                        {cardItem.variants.length > 0 && cardItem.variants.map((item) => (
+                            <VariantItem 
+                                item={item} 
+                                key={item.id} 
+                                cardItem={cardItem}
+                                setCardItem={setCardItem}
+                                openSettings={openSettings}
+                                register={register}
+                                errors={errors}
+                                setValue={setValue}/>
                         ))}
-            
                     </ul>
                 </div>
-                <button type='button' className='form-question__add' onClick={onAddVariant}><Plus /></button>
+                <Button onClick={onAddVariant}><Plus /></Button>
+                
             </div>
+            <button type='submit' onClick={handleClick}>click</button>
             <div className="form-question__buttons">
-                {forms.length > 1 && 
-                    <Button btnParams={formBtnParams} btnClick={onDeleteForm}/>
-                }
+                {children}
             </div>
         </form>
     )

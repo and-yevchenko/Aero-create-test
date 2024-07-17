@@ -1,53 +1,48 @@
 import { create } from "zustand";
 import { nanoid } from 'nanoid';
+import { createJSONStorage, persist } from "zustand/middleware";
 
-export const useAddForms = create((set) => ({
-    forms: [
-        { id: nanoid(), title: "", variants: [{ id: nanoid(), answer: "" }] }
-    ],
 
-    addForm: () => set((state) => {
-        const newForm = { id: nanoid(), title: "", variants: [{ id: nanoid(), answer: "" }] }
-        return { forms: [...state.forms, newForm] }
-    }),
-    updateFormTitle: (id, title) => set((state) => {
-        state.forms.find(form => form.id === id).title = title
-        return { forms: state.forms }
-    }),
-    deleteForm: (id) => set((state) => {
-        return { forms: state.forms.filter((form) => form.id !== id)}
-    }),
 
-    addVariant: (id) => set((state) => {
-        state.forms.find(form => form.id === id).variants = [...state.forms.find(form => form.id === id).variants, {id: nanoid(), answer: ""}]
-        return { forms: state.forms }
+export const useAddForms = create(
+    persist (
+    (set) => ({
+        forms: [],
+        addForm: (object) => set((state) => {
+            console.log(object)
+            return { forms: [...state.forms, object] }
+        }),
+        deleteForm: (id) => set((state) => {
+            return { forms: state.forms.filter((form) => form.id !== id)}
+        }),
+        updateForm: (el, object) => set((state) => {
+            return { 
+                ...state,
+                forms: state.forms.map(i => i.id === el.id ? object : i)
+            }
+        }),
+        clearAll: () => set((state) => {
+            console.log(state.forms)
+            return { forms: []}
+        }),
     }),
-    updateFormVariants: (id, variantID, answer) => set((state) => {
-        const findVariants = state.forms.find(form => form.id === id).variants
-        findVariants.find(variant => variant.id === variantID).answer = answer
-        return { forms: state.forms }
-    }),
-    addTrueVariant: (id, variantID) => set((state) => {
-        const findVariants = state.forms.find(form => form.id === id).variants
-        findVariants.find(variant => variant.id === variantID)['isTrue'] = true
-        return { forms: state.forms }
-    }),
-    deleteTrueVariant: (id, variantID) => set((state) => {
-        const findVariants = state.forms.find(form => form.id === id).variants
-        delete findVariants.find(variant => variant.id === variantID).isTrue
-        return { forms: state.forms }
-    }),
-    deleteVariant: (id, variantID) => set((state) => {
-        const filterVariant = state.forms.find(form => form.id === id).variants.filter((variant) => variant.id !== variantID)
-        state.forms.find(form => form.id === id).variants = filterVariant
-        return { forms: state.forms }
-    }),
-}))
+    {
+        name: 'forms-storage',
+        storage: createJSONStorage(() => localStorage),
+    },
+))
 
-export const useReUpdate = create((set) => ({
-    arrUpdate: [{}],
-    updates: () => set((state) => {
-        console.log(state.arrUpdate);
-        return { arrUpdate: [...state.arrUpdate] }
-    })
-}))
+export const useShuffleIsActive = create(
+    persist (
+    (set) => ({
+        shuffle: false,
+        setShuffle: () => set((state) => {
+            return { shuffle: !state.shuffle }
+        }),
+    }),
+    {
+        name: 'shuffle-storage',
+        storage: createJSONStorage(() => sessionStorage),
+    }
+    )
+)
