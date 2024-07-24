@@ -1,7 +1,5 @@
 import { create } from "zustand";
-import { nanoid } from 'nanoid';
 import { createJSONStorage, persist } from "zustand/middleware";
-
 
 
 export const useAddForms = create(
@@ -9,7 +7,6 @@ export const useAddForms = create(
     (set) => ({
         forms: [],
         addForm: (object) => set((state) => {
-            console.log(object)
             return { forms: [...state.forms, object] }
         }),
         deleteForm: (id) => set((state) => {
@@ -22,7 +19,6 @@ export const useAddForms = create(
             }
         }),
         clearAll: () => set((state) => {
-            console.log(state.forms)
             return { forms: []}
         }),
     }),

@@ -15,7 +15,7 @@
     }
 }
 
-.window-reset {
+.modal {
     background-color: #0000007c;
     width: 100%;
     height: 100%;
@@ -34,21 +34,26 @@
     }
     &__content {
         background-color: #ffffffb6;
-        padding: 3rem 8rem;
+        padding: 3rem clamp(3rem, 18vw, 8rem);
         border-radius: 0.5rem;
         display: flex;
         flex-direction: column;
         gap: 3rem;
         align-items: center;
+        @media screen and (max-width:374px) {
+            padding: 3rem 2rem;
+        }
     }
     &__title {
         font-size: 1.5rem;
         font-weight: 600;
+        text-align: center;
     }
     &__text {
         font-size: 1.5rem;
         font-weight: 400;
         letter-spacing: 0.1rem;
+        text-align: center;
     }
     &__buttons {
         width: 100%;

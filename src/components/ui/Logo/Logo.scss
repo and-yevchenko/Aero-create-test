@@ -1,6 +1,5 @@
 .logo-aero {
     img {
-        max-width: 250px;
-        fill: red;
+        width: clamp(150px, 45.5vw, 250px);
     }
 }

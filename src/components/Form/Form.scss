@@ -1,8 +1,8 @@
-.form-question {
+.form {
     background-color: #ffffff81;
-    padding: 2rem;
+    padding: clamp(1rem, 7.6vw, 2rem);
     transition: all ease 1s;
-    border-radius: 2rem;
+    border-radius: clamp(1.2rem, 7.6vw, 2rem);
     margin-bottom: 2rem;
     &__question {
         display: flex;
@@ -39,9 +39,14 @@
     &__add {
         background: transparent;
         :hover {
-            color: rgb(179, 0, 0);
+            color: #b30000;
             transition: color 0.2s ease;
         }
+    }
+    &__error {
+        display: block;
+        margin-top: 1rem;
+        color: #69696981;
     }
     &__buttons {
         display: flex;
@@ -60,14 +65,10 @@
 }
 
 .list-inputs {
-    // :not(:last-child) {
-    //     margin-bottom: 0.8rem;
-    // }
     > li {
         display: flex;
         justify-content: space-between;
         gap: 1rem;
-        // align-items: end;
         position: relative;
         margin-bottom: 0.9rem;
 
@@ -81,7 +82,6 @@
     &__checks {
         margin-right: 0.5rem;
         cursor: pointer;
-        // line-height: 0;
         margin: 0 auto;
         display: flex;
         align-items: center;
@@ -89,15 +89,11 @@
     }
     &__checkbox {
         display: none;
-        // margin-right: 0.5rem;
         &:checked + .list-inputs__custom-checkbox::before {
             transform: scale(1);
         }
     }
     &__custom-checkbox {
-        // line-height: 1;
-
-        // margin-right: 0.5rem;
         display: inline-block;
         background-color: #fff;
         border: 3px solid #414141;
@@ -119,15 +115,11 @@
         }
     }
     button {
-        // position: absolute;
-        // right: -2rem;
         display: flex;
         align-items: center;
         justify-content: center;
         order: 3;
         background: transparent;
-        // margin: 0 auto;
-        // text-align: center;
         line-height: 0;
         :hover {
             color: rgb(179, 0, 0);

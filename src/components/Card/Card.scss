@@ -1,8 +1,9 @@
-.card-question {
+.card {
     background-color: #bbbbbb54;
-    padding: 2rem;
-    border-radius: 2rem;
+    padding: clamp(1rem, 7.6vw, 2rem);
+    border-radius: clamp(1.2rem, 7.6vw, 2rem);
     margin-bottom: 2rem;
+    width: 100%;
     &__header {
         display: flex;
         justify-content: space-between;
@@ -25,12 +26,10 @@
             }
         }
     }
-
     &__content {
         display: flex;
         flex-direction: column;
         padding: 0 1rem;
-        
         > h2 {
             font-size: 1.5rem;
             font-weight: 500;
@@ -51,7 +50,4 @@
             margin-bottom: 1rem;
         }
     }
-}
-.card-container .card-settings {
-    background-color: #bbbbbb54;
 }

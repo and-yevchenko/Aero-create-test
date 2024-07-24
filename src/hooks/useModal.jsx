@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react"
 
 
-export const useWindowReset = () => {
+export const useModal = () => {
     const [visible, setVisible] = useState(false)
     const [animation, setAnimation] = useState('in')
     
-    const handleOpenWindowReset = () => setVisible(true)
-    const handleCloseWindowReset = () => {
+    const handleOpenModal = () => setVisible(true)
+    const handleCloseModal = () => {
         setAnimation('out')
         setTimeout(() => setVisible(false), 200)
     }
@@ -21,7 +21,7 @@ export const useWindowReset = () => {
     useEffect(() => {
         const handleKeyDown = (e) => {
             if (e.key === 'Escape') {
-                handleCloseWindowReset()
+                handleCloseModal()
             }
         }
         document.addEventListener('keydown', handleKeyDown)
@@ -32,8 +32,8 @@ export const useWindowReset = () => {
     
     return {
         open: visible, 
-        onOpen: handleOpenWindowReset, 
-        onClose: handleCloseWindowReset,
+        onOpen: handleOpenModal, 
+        onClose: handleCloseModal,
         animation
     }
 }

@@ -50,14 +50,21 @@
     align-items: start;
     overflow: hidden;
     &__container {
-        width: 1250px;
+        // width: 1250px;
+        width: clamp(1000px, 100vw, 1250px);
+        margin: 0 auto;
+        @media screen and (max-width:1000px) {
+            width: 100%;
+        }
     }
     &__button {
         background-color: transparent;
         border: 3px solid rgba(255, 255, 255, 0);
-        padding: 1rem 2.5rem;
+        // padding: 1rem 2.5rem;
+        padding: clamp(0.5rem, 2.9vw, 1rem) clamp(1.5rem, 7.27vw, 2.5rem);
         border-radius: 1.5rem;
         font-size: 1.5rem;
+        text-align: center;
         font-weight: 700;
         color: #fff;
         transition: all 1s ease;
