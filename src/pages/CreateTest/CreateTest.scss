@@ -1,95 +1,97 @@
 @-webkit-keyframes btn-tilt {
-    0% {
-        -webkit-transform: rotate(0turn);
-                transform: rotate(0turn);
-    }
-    25% {
-        -webkit-transform: rotate(0.01turn);
-                transform: rotate(0.01turn);
-    }
-    
-    75% {
-        -webkit-transform: rotate(-0.01turn);
-                transform: rotate(-0.01turn);
-        
-    }
-    100% {
-        -webkit-transform: rotate(0turn);
-                transform: rotate(0turn);
-    }
+  0% {
+    -webkit-transform: rotate(0turn);
+    transform: rotate(0turn);
+  }
+  25% {
+    -webkit-transform: rotate(0.01turn);
+    transform: rotate(0.01turn);
+  }
+
+  75% {
+    -webkit-transform: rotate(-0.01turn);
+    transform: rotate(-0.01turn);
+  }
+  100% {
+    -webkit-transform: rotate(0turn);
+    transform: rotate(0turn);
+  }
 }
 @keyframes btn-tilt {
-    0% {
-        -webkit-transform: rotate(0turn);
-                transform: rotate(0turn);
-    }
-    25% {
-        -webkit-transform: rotate(0.01turn);
-                transform: rotate(0.01turn);
-    }
-    
-    75% {
-        -webkit-transform: rotate(-0.01turn);
-                transform: rotate(-0.01turn);
-        
-    }
-    100% {
-        -webkit-transform: rotate(0turn);
-                transform: rotate(0turn);
-    }
+  0% {
+    -webkit-transform: rotate(0turn);
+    transform: rotate(0turn);
+  }
+  25% {
+    -webkit-transform: rotate(0.01turn);
+    transform: rotate(0.01turn);
+  }
+
+  75% {
+    -webkit-transform: rotate(-0.01turn);
+    transform: rotate(-0.01turn);
+  }
+  100% {
+    -webkit-transform: rotate(0turn);
+    transform: rotate(0turn);
+  }
 }
 
 .create-test-page {
-    width: 100%;
-    height: 100%;
-    min-height: 100vh;
-    background: rgb(204,251,255);
-    background: linear-gradient(127deg, rgba(204,251,255,1) 25%, rgba(239,150,197,1) 85%);
-    display: flex;
-    justify-content: center;
-    align-items: start;
-    overflow: hidden;
-    &__container {
-        // width: 1250px;
-        width: clamp(1000px, 100vw, 1250px);
-        margin: 0 auto;
-        @media screen and (max-width:1000px) {
-            width: 100%;
-        }
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  background: rgb(204, 251, 255);
+  background: linear-gradient(
+    127deg,
+    rgba(204, 251, 255, 1) 25%,
+    rgba(239, 150, 197, 1) 85%
+  );
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  overflow: hidden;
+  &__container {
+    // width: 1250px;
+    width: clamp(1000px, 100vw, 1250px);
+    margin: 0 auto;
+    @media screen and (max-width: 1000px) {
+      width: 100%;
     }
-    &__button {
-        background-color: transparent;
-        border: 3px solid rgba(255, 255, 255, 0);
-        // padding: 1rem 2.5rem;
-        padding: clamp(0.5rem, 2.9vw, 1rem) clamp(1.5rem, 7.27vw, 2.5rem);
-        border-radius: 1.5rem;
-        font-size: 1.5rem;
-        text-align: center;
-        font-weight: 700;
-        color: #fff;
-        transition: all 1s ease;
-        animation: btn-tilt 1.5s ease-out reverse infinite;
-        &:hover {
-            border: 3px solid white;
-            animation: none;
-        }
+  }
+  &__button {
+    background-color: transparent;
+    border: 3px solid rgba(255, 255, 255, 0);
+    // padding: 1rem 2.5rem;
+    padding: clamp(0.5rem, 2.9vw, 1rem) clamp(1.5rem, 7.27vw, 2.5rem);
+    border-radius: 1.5rem;
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: 700;
+    color: #fff;
+    transition: all 1s ease;
+    animation: btn-tilt 1.5s ease-out reverse infinite;
+    &:hover {
+      border: 3px solid white;
+      animation: none;
     }
-    &__add {
-        display: block;
-        background: transparent;
-        margin: 0 auto;
-        > * {
-            width: 3rem;
-            height: 3rem;
-        }
-        &:hover {
-            color: rgb(179, 0, 0);
-            transition: color 0.3s ease;
-        }
+  }
+  &__add {
+    display: block;
+    background: transparent;
+    margin: 0 auto;
+    > * {
+      width: 3rem;
+      height: 3rem;
     }
-    &__error {
-        color: red;
-        text-align: center;
-        margin-bottom: 1rem;
+    &:hover {
+      color: rgb(179, 0, 0);
+      transition: color 0.3s ease;
     }
+  }
+  &__error {
+    color: red;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
 }

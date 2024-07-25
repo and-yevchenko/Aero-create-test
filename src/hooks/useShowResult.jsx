@@ -1,31 +1,28 @@
-import { useState } from "react"
+import { useState } from 'react';
 
 export const useShowResult = () => {
-    const [result, setResult] = useState([])
-    const [show, setShow] = useState(false)
+  const [result, setResult] = useState([]);
+  const [show, setShow] = useState(false);
 
-    const handleShowResult = () => {
-        setShow(true)
-    }
+  const handleShowResult = () => {
+    setShow(true);
+  };
 
-    const sumResult = () => {
-       return result.reduce((a, b) => a + b, 0)
-    }
+  const sumResult = () => {
+    return result.reduce((a, b) => a + b, 0);
+  };
 
-    const onSetResult = (checking) => {
-        setResult(prev => {
-            return [
-                ...prev,
-                checking
-            ]
-        })
-    }
+  const onSetResult = (checking) => {
+    setResult((prev) => {
+      return [...prev, checking];
+    });
+  };
 
-    return {
-        result,
-        show,
-        handleShowResult,
-        sumResult,
-        onSetResult,
-    }
-}
+  return {
+    result,
+    show,
+    handleShowResult,
+    sumResult,
+    onSetResult,
+  };
+};

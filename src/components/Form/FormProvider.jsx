@@ -1,13 +1,13 @@
-import { createContext, useContext } from "react";
+/* eslint-disable react-refresh/only-export-components */
+import { createContext, useContext } from 'react';
 
-export const FormCardContext = createContext(null)
+export const FormCardContext = createContext(null);
 
 export const useFormCardContext = () => {
-    
-    const props = useContext(FormCardContext)
-    if (!props) {
-        throw new Error('No form-question context provider')
-    }
+  const props = useContext(FormCardContext);
+  if (!props) {
+    throw new Error('No form-question context provider');
+  }
 
-    return props
-}
+  return props;
+};
