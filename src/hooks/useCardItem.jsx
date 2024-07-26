@@ -14,7 +14,6 @@ export const useCardItem = () => {
     variants: [{ id: nanoid(), answer: '', check: false }],
   });
   const handleAddCard = () => {
-    // e.preventDefault()
     addForms(cardItem);
     setCardItem({
       id: nanoid(),
