@@ -10,7 +10,7 @@ export const Home = () => {
       <BackgroundVideo />
       <Header />
       <TitleHome>Create your own test</TitleHome>
-      <Link to="/create-test" className="home-page__button">
+      <Link to="/Aero-create-test/create-test" className="home-page__button">
         Get started
       </Link>
     </div>

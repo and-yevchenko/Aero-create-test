@@ -21,7 +21,7 @@ export const CreateTest = () => {
       <div className="create-test-page__container">
         <Header>
           {forms.length > 0 && (
-            <Link to={'/show-test'} className="create-test-page__button">
+            <Link to={'/Aero-create-test/show-test'} className="create-test-page__button">
               show test
             </Link>
           )}
