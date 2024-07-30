@@ -5,15 +5,17 @@ import { ShowTest } from '../../pages/ShowTest/ShowTest';
 
 export const router = createBrowserRouter([
   {
-    path: '/Aero-create-test/',
+    path: '/',
     element: <Home />,
-  },
-  {
-    path: '/Aero-create-test/create-test',
-    element: <CreateTest />,
-  },
-  {
-    path: '/Aero-create-test/show-test',
-    element: <ShowTest />,
+    children: [
+      {
+        path: '/create-test',
+        element: <CreateTest />,
+      },
+      {
+        path: '/show-test',
+        element: <ShowTest />,
+      },
+    ],
   },
 ]);
