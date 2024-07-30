@@ -7,15 +7,13 @@ export const router = createBrowserRouter([
   {
     path: '/Aero-create-test/',
     element: <Home />,
-    children: [
-      {
-        path: '/Aero-create-test/create-test',
-        element: <CreateTest />,
-      },
-      {
-        path: '/Aero-create-test/show-test',
-        element: <ShowTest />,
-      },
-    ],
+  },
+  {
+    path: '/Aero-create-test/create-test',
+    element: <CreateTest />,
+  },
+  {
+    path: '/Aero-create-test/show-test',
+    element: <ShowTest />,
   },
 ]);
