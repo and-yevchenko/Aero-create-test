@@ -30,7 +30,7 @@ const CreatePanel = ({ open, forms, ...props }) => {
         {forms.length > 0 && (
           <Link
             className="control-panel__play"
-            to={'/show-test'}
+            to={'/Aero-create-test/show-test'}
             title="show test"
           >
             <Play />
