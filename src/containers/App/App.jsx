@@ -5,7 +5,7 @@ import { router } from '../Router/Router';
 function App() {
   return (
     <>
-      <RouterProvider router={router} basename="/Aero-create-test/" />
+      <RouterProvider router={router} basename="/Aero-create-test/"/>
     </>
   );
 }
