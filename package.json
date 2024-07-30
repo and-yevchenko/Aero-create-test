@@ -1,7 +1,8 @@
 {
   "name": "aero-create-test",
+  "homepage": "https://and-yevchenko.github.io/Aero-create-test/",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
