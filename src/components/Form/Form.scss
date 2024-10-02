@@ -1,5 +1,9 @@
 .form {
-  background-color: #ffffff81;
+  background: url('/public/form-back.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 0.25rem solid #00000083;
+  box-shadow: 4px 4px 15px -8px rgba(0,0,0,0.75);
   padding: clamp(1rem, 7.6vw, 2rem);
   transition: all ease 1s;
   border-radius: clamp(1.2rem, 7.6vw, 2rem);

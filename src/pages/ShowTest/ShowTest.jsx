@@ -15,7 +15,7 @@ export const ShowTest = () => {
     <div className="show-test-page">
       <div className="show-test-page__container">
         <Header>
-          <Link to="/create-test" className="show-test-page__button">
+          <Link to="/Aero-create-test/create-test" className="show-test-page__button">
             edit test
           </Link>
         </Header>

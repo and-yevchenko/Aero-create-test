@@ -4,7 +4,7 @@ import './Header.scss';
 export const Header = ({ children }) => {
   return (
     <header className="header">
-      <Logo link={'/'} />
+      <Logo link={'/Aero-create-test/'} />
       {children}
     </header>
   );

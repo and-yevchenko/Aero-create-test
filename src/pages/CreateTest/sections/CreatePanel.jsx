@@ -6,7 +6,7 @@ import { useEffect, useRef } from 'react';
 const CreatePanel = ({ open, forms, ...props }) => {
   const btnShuffle = useRef(null);
   useEffect(() => {
-    btnShuffle.current.style.color = props.shuffle ? '#ff0000' : '#00000030';
+    btnShuffle.current.style.color = props.shuffle ? '#ff0000' : '#00000083';
   }, [props.shuffle]);
 
   return (
@@ -30,7 +30,7 @@ const CreatePanel = ({ open, forms, ...props }) => {
         {forms.length > 0 && (
           <Link
             className="control-panel__play"
-            to={'/show-test'}
+            to={'/Aero-create-test/show-test'}
             title="show test"
           >
             <Play />
