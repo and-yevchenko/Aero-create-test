@@ -56,9 +56,6 @@
   }
   &__button {
     background-color: transparent;
-    border: 3px solid rgba(255, 255, 255, 0);
-    padding: clamp(0.5rem, 2.9vw, 1rem) clamp(1.5rem, 7.27vw, 2.5rem);
-    border-radius: 1.5rem;
     font-size: 1.5rem;
     text-align: center;
     font-weight: 700;
@@ -66,8 +63,7 @@
     transition: all 1s ease;
     animation: btn-tilt 1.5s ease-out reverse infinite;
     &:hover {
-      border: 3px solid white;
-      animation: none;
+      color: #00000083;
     }
   }
   &__add {

@@ -8,7 +8,8 @@ export const Home = () => {
   return (
     <div className="home-page">
       <BackgroundVideo />
-      <Header />
+      {/* <Header /> */}
+      <img src="/Aero-create-test/Aero.svg" alt="Logo" className='home-logo'/>
       <TitleHome>Create your own test</TitleHome>
       <Link to="/Aero-create-test/create-test" className="home-page__button">
         Get started

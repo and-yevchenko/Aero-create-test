@@ -56,9 +56,6 @@
   }
   &__button {
     background-color: transparent;
-    border: 3px solid rgba(255, 255, 255, 0);
-    padding: 1rem 2.5rem;
-    border-radius: 1.5rem;
     font-size: 1.5rem;
     text-align: center;
     font-weight: 700;
@@ -66,14 +63,15 @@
     transition: all 1s ease;
     animation: btn-tilt 1.5s ease-out reverse infinite;
     &:hover {
-      border: 3px solid white;
-      animation: none;
+      color: #00000083;
     }
   }
   &__list {
     background-color: #ffffff81;
     padding: clamp(1rem, 7.6vw, 2rem) clamp(2rem, 15.2vw, 4rem);
-    border-radius: 2rem;
+    border-top: 0.25rem solid #00000083;
+    border-bottom: 0.25rem solid #00000083;
+    box-shadow: 4px 4px 15px -8px rgba(0,0,0,0.75);
     margin-bottom: 2rem;
     :not(:last-of-type) {
       margin-bottom: 3rem;
