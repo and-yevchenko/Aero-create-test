@@ -6,7 +6,7 @@ import { useEffect, useRef } from 'react';
 const CreatePanel = ({ open, forms, ...props }) => {
   const btnShuffle = useRef(null);
   useEffect(() => {
-    btnShuffle.current.style.color = props.shuffle ? '#ff0000' : '#00000030';
+    btnShuffle.current.style.color = props.shuffle ? '#ff0000' : '#00000083';
   }, [props.shuffle]);
 
   return (
